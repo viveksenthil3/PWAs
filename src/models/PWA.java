@@ -1,6 +1,7 @@
 package models;
 
 public class PWA {
+	static private String[] categories = {"entertainment", "food"}; 
 	private String pwaId;
 	private String userName;
 	private String name;
@@ -10,6 +11,10 @@ public class PWA {
 	private String link;
 	private String samplePics;
 	private int views;
+	
+	public static String[] getCategories() {
+		return categories;
+	}
 	public String getPwaId() {
 		return pwaId;
 	}

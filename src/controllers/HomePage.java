@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import db.PWATable;
+import models.PWA;
 
 /**
  * Servlet implementation class HomePage
@@ -21,7 +22,9 @@ public class HomePage extends HttpServlet {
 		PWATable p = new PWATable();
 //		p.getTenPwa("entertainment");
 		
-		request.setAttribute("foodPWA", p.getTenPwa("food"));
+		for(String category : PWA.getCategories()) {
+			request.setAttribute(category, p.getPwa(category, true));
+		}
 		
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
