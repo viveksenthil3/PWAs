@@ -28,8 +28,10 @@ public class PWATable {
 			
 			ResultSet rs = stm.executeQuery(String.format(query, category));
 			while(rs.next()) {
-				PWA pwa = new PWA();
-				pwa.setName(rs.getString("Name"));
+				PWA pwa = new PWA(rs.getString("PwaId"), rs.getString("UserName"), rs.getString("Name"), "", rs.getString("Category"), rs.getString("Description"),
+						rs.getString("Link"), rs.getInt("SamplePicsCount"));
+				
+//				pwa.setName(rs.getString("Name"));
 //				System.out.println(rs.getString("Name"));
 				pwa_array.add(pwa);
 			}
@@ -41,6 +43,35 @@ public class PWATable {
 		return pwa_array;
 	}
 	
+
+	public PWA getPwa(String pwaId){
+		PWA pwa = null;
+		
+		try(Connection con = DriverManager.getConnection(DBConfig.getURI(), DBConfig.getUserName(), DBConfig.getPassword());
+				Statement stm = con.createStatement();){
+			
+			String query = "SELECT * FROM pwa WHERE PwaId='%s' ;";
+			
+			
+			ResultSet rs = stm.executeQuery(String.format(query, pwaId));
+			if(rs.next()) {
+				pwa = new PWA(rs.getString("PwaId"), rs.getString("UserName"), rs.getString("Name"), "", rs.getString("Category"), rs.getString("Description"),
+						rs.getString("Link"), rs.getInt("SamplePicsCount"));
+				
+//				pwa.setName(rs.getString("Name"));
+//				System.out.println(rs.getString("Name"));
+//				pwa_array.add(pwa);
+			}
+			else
+				return null;
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		return pwa;
+	}
+
 	public String addPwa(String category, String name, String description, int samplePicsCount, String link) {
 		UUID uuid=UUID.randomUUID();
 		String query = "INSERT INTO pwa (PwaId, Username, Name, Category, Description, Link, SamplePicsCount, Views) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";

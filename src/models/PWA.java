@@ -9,9 +9,25 @@ public class PWA {
 	private String category;
 	private String description;
 	private String link;
-	private String samplePics;
+	private int samplePicsCount;
 	private int views;
 	
+
+	
+	public PWA(String pwaId, String userName, String name, String logo, String category, String description,
+			String link, int samplePicsCount) {
+//		super();
+		this.pwaId = pwaId;
+		this.userName = userName;
+		this.name = name;
+		this.logo = logo;
+		this.category = category;
+		this.description = description;
+		this.link = link;
+		this.samplePicsCount = samplePicsCount;
+		this.views = 0;
+	}
+
 	public static String[] getCategories() {
 		return categories;
 	}
@@ -57,11 +73,11 @@ public class PWA {
 	public void setLink(String link) {
 		this.link = link;
 	}
-	public String getSamplePics() {
-		return samplePics;
+	public int getSamplePicsCount() {
+		return samplePicsCount;
 	}
-	public void setSamplePics(String samplePics) {
-		this.samplePics = samplePics;
+	public void setSamplePics(int samplePicsCount) {
+		this.samplePicsCount = samplePicsCount;
 	}
 	public int getViews() {
 		return views;
