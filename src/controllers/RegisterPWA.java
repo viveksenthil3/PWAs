@@ -22,7 +22,7 @@ import db.PWATable;
 @MultipartConfig(maxFileSize = 16177215)
 public class RegisterPWA extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String SAVE_DIR = "images";
+	private static final String SAVE_DIR = "static\\samplePics";
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
