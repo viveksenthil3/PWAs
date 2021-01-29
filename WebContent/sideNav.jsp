@@ -136,7 +136,7 @@
 </head>
 <div style="height:100%; width:100%; background-color:white; display: flex; align-items: center; justify-content: center;">
 	<div style="position:absolute; top:20px; left:80px; "> 
-		<img src=images/PWAS.jpg> 
+		<img src=/PWAs/images/PWAS.svg> 
 	</div> 
 	<a href="#"><button class="button"><i class='fas fa-plus'></i> Add PWA</button></a>
 	<a href="#"><button class="button1">PWA</button></a>

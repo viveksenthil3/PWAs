@@ -99,6 +99,32 @@ public class PWATable {
 		return null;			
 	}
 	
+	public ArrayList<PWA> searchPwa(String name){
+		ArrayList<PWA> pwa_array = new ArrayList<>();
+		
+		try(Connection con = DriverManager.getConnection(DBConfig.getURI(), DBConfig.getUserName(), DBConfig.getPassword());
+				Statement stm = con.createStatement();){
+			
+			String query = "SELECT * FROM pwa WHERE Name RLIKE '^%s' LIMIT 10;";
+			
+//			System.out.println(name);
+			ResultSet rs = stm.executeQuery(String.format(query, name));
+			while(rs.next()) {
+				PWA pwa = new PWA(rs.getString("PwaId"), rs.getString("UserName"), rs.getString("Name"), "", rs.getString("Category"), rs.getString("Description"),
+						rs.getString("Link"), rs.getInt("SamplePicsCount"));
+				
+//				pwa.setName(rs.getString("Name"));
+//				System.out.println(rs.getString("Name"));
+				pwa_array.add(pwa);
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		return pwa_array;
+	}
+	
 	public static void main(String[] a) {
 		PWATable p = new PWATable();
 		p.getPwa("entertainment", false);
