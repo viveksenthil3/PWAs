@@ -9,7 +9,6 @@
 	
 	<%
 		for(String category : PWA.getCategories()){
-			
 			ArrayList<PWA> pwa = (ArrayList<PWA>)request.getAttribute(category);
 			out.println("<h3>"+category+"</h3><ul>");
 			for(int i=0; i<pwa.size(); i++)

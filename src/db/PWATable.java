@@ -43,6 +43,7 @@ public class PWATable {
 		return pwa_array;
 	}
 	
+
 	public PWA getPwa(String pwaId){
 		PWA pwa = null;
 		
@@ -70,7 +71,7 @@ public class PWATable {
 		
 		return pwa;
 	}
-	
+
 	public String addPwa(String category, String name, String description, int samplePicsCount, String link) {
 		UUID uuid=UUID.randomUUID();
 		String query = "INSERT INTO pwa (PwaId, Username, Name, Category, Description, Link, SamplePicsCount, Views) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";

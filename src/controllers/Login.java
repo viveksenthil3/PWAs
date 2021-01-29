@@ -25,7 +25,9 @@ public class Login extends HttpServlet {
 //			response.getWriter().println("Successfully logged in");
 			
 			HttpSession session = request.getSession(true);
+
 			session.setAttribute("username", request.getParameter("username"));
+
 			
 			response.sendError(200);
 //			request.getParameter("redirect");
@@ -33,7 +35,9 @@ public class Login extends HttpServlet {
 		else {
 			HttpSession session = request.getSession();
 			if(session!=null)
+
 				session.removeAttribute("username");
+
 			response.sendError(400);
 			
 		}

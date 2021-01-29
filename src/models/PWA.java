@@ -12,6 +12,7 @@ public class PWA {
 	private int samplePicsCount;
 	private int views;
 	
+
 	
 	public PWA(String pwaId, String userName, String name, String logo, String category, String description,
 			String link, int samplePicsCount) {
@@ -26,6 +27,7 @@ public class PWA {
 		this.samplePicsCount = samplePicsCount;
 		this.views = 0;
 	}
+
 	public static String[] getCategories() {
 		return categories;
 	}
