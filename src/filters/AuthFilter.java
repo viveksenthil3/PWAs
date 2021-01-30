@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class AuthFilter
  */
-@WebFilter(urlPatterns = {"/registerPWA", "/home"})
+@WebFilter(urlPatterns = {"/addPWA", "/addReview"})
 
 public class AuthFilter implements Filter {
 

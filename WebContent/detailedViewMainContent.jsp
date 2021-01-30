@@ -92,6 +92,17 @@
 				<h4>Reviews</h4>
 			</div>
 			
+			<div style="display: flex; padding: 0 0 0 6.8em;">
+				<p style="font-weight: bold;    margin: .2em 1em 0 0;"> Rate This PWA</p>
+				<div class="userRating">
+					<i id="star-1" class="material-icons">star_rate</i>
+					<i id="star-2" class="material-icons">star_rate</i>
+					<i id="star-3" class="material-icons">star_rate</i>
+					<i id="star-4" class="material-icons">star_rate</i>
+					<i id="star-5" class="material-icons">star_rate</i>
+				</div>
+			</div>	
+			
 			<div style="width:100%; height: fit-content; background-color: pin; display: flex; flex-direction: column;">
 				
 				
@@ -129,7 +140,7 @@
 						<div class="reviewUserName">Vivek</div>
 						<div>
 							<div class="reviewRating">
-								<i style="color:yellow"class="material-icons">star_rate</i>
+								<i style="color:#ffc61a"class="material-icons">star_rate</i>
 								<i class="material-icons">star_rate</i>
 								<i class="material-icons">star_rate</i>
 								<i class="material-icons">star_rate</i>
@@ -149,7 +160,82 @@
 	
 </div>
 
+<div style="display: none;" class="ratingPopOuterContainer">
+	<div class="ratingCard"> 
+		<h4>Review</h4>
+		<div style="display: flex; flex-direction:column; adding: 0 0 0 6.8em;">
+			<p style="font-weight: bold;    margin: .2em 1em 0 0;"> Rate This PWA</p>
+			<div class="userRating2">
+				<i id="sstar-1" class="material-icons">star_rate</i>
+				<i id="sstar-2" class="material-icons">star_rate</i>
+				<i id="sstar-3" class="material-icons">star_rate</i>
+				<i id="sstar-4" class="material-icons">star_rate</i>
+				<i id="sstar-5" class="material-icons">star_rate</i>
+			</div>
+		</div>	
+		
+		<p style="font-weight: bold;    margin: .2em 1em 0 0;"> Your Review</p>
+		<textarea id="userRatingMessage" style="height:100px"></textarea>
+		<button class="btn orange postRatingBtn">Post Rating</button>
+	</div>
+</div>
+
+<script type="text/javascript">
+	let userRating = 0;
+	
+	$(".userRating i").on("mouseover", e=>{		
+		$(".userRating i").css("color", "grey");
+		
+		for(let i=1; i<=$(e.target).attr("id").split("-")[1]; i++){
+			$("#star-"+i).css("color", "#ffc61a");
+		}
+	});
+	
+	$(".userRating").on("mouseleave", e=>{
+		
+		$(".userRating i").css("color", "grey");		
+	});
+	
+	$(".userRating").click(_=>{
+		$(".ratingPopOuterContainer").show();
+	});
+	
+	$(".userRating2 i").on("mouseover", e=>{
+		
+		$(".userRating2 i").css("color", "grey");
+		
+		for(let i=1; i<=$(e.target).attr("id").split("-")[1]; i++){
+			$("#sstar-"+i).css("color", "#ffc61a");
+		}
+	});
+	
+	$(".userRating2").on("mouseleave", e=>{
+		if(userRating==0)
+			$(".userRating2 i").css("color", "grey");		
+	});
+	
+	$(".userRating2 i").click(e=>{
+		userRating = $(e.target).attr("id").split("-")[1];
+	});
+	
+	$(".postRatingBtn").click(e=>{
+		$.post("/PWAs/addReview",{
+			pwaId:'<%= pwa.getPwaId() %>',
+			message: $("#userRatingMessage").val(),
+			rating: userRating
+		}, _=>{
+			$(".ratingPopOuterContainer").hide();
+			window.location.reload();
+		})
+	});
+</script>
+
 <style>
+	.userRating i{
+		color: grey;
+		cursor: pointer;
+	}
+
 	.reviewContainer{
 		display: flex;
 		height: 150px;
@@ -189,6 +275,41 @@
 		color: grey;
 		font-size: 14px;
 		text-align: justify;
+	}
+	
+	.ratingPopOuterContainer{
+		position: absolute;
+		top:0;
+		left:0;
+		
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+		background-color: rgb(0, 0, 0, .4);
+	}
+	
+	.ratingCard{
+		background-color: white;
+		border-radius: .3em;
+		padding:0em 1em 1em 1em;
+		display: flex;
+		flex-direction: column;
+		
+		width:350px;
+	    height: 370px;
+	    box-shadow: 20px 20px 30px rgb(0, 0, 0, 0.3);
+	}
+	
+	.userRating2 i{
+		color: grey;
+		cursor: pointer;
+	}
+	
+	.postRatingBtn{
+		margin: 2em 0 0 0;
 	}
 	
 </style>
