@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login</title>
+<title>Register</title>
 
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -17,18 +17,21 @@
             
 </head>
 <body>
-	<div class="loginMainContainer">
-		<div class="loginCard">
+	<div class="registerMainContainer">
+		<div class="registerCard">
 			
-			<h4>Login </h4>
-				<form method="post" action="login">				
-				<input name="username" placeholder="User Name" type="text">
+			<h4>Register </h4>
+				<form method="post" action="register">				
+				<input name="uname" placeholder="User Name" type="text">
 				<br>
 				<input name="pass" placeholder="Password" type="password">		
 				<br>
-				<input style="" class="btn orange" value="Login" type="submit">
+				<input name="email" placeholder="Email" type="text">		
+				<br>
+				<input class="btn orange" value="Register" type="submit">
 			</form>
-			<div style="display: flex; justify-content: center;">Don't have an account? <a style="text-decorations:none; margin-left:.3em;" href="register">Register</a></div>
+			
+			<div style="display: flex; justify-content: center;">Already have an account? <a style="text-decorations:none; margin-left:.3em;" href="login">Login</a></div>
 		</div>
 	</div>
 	
@@ -39,7 +42,7 @@
 		}
 
 		
-		.loginMainContainer{
+		.registerMainContainer{
 			background: radial-gradient(orange, #ffc61a);
 			width: 100%;
 			height: 100vh;
@@ -49,7 +52,7 @@
 			justify-content: center;
 		}
 		
-		.loginCard{
+		.registerCard{
 			background-color: white;
 			width: 25em;
 			height: 25em;

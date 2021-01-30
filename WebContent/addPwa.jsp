@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html style="overflow: hidden;">
+<html>
 <head>
 <meta charset="ISO-8859-1">
 <title>PWA store</title>
@@ -15,9 +15,9 @@
 	
 	<div style="background-color: red;height: 100%;flex: 1;"><jsp:include page="sideNav.jsp"></jsp:include></div>
 	
-	<div style="background-color: #f3f3f3;height: 100%;flex: 5;display: flex;flex-direction: column;">
+	<div style="background-color: green;height: 100%;flex: 5;display: flex;flex-direction: column;">
 		<jsp:include page="searchBar.jsp"></jsp:include>
-		<jsp:include page="detailedViewMainContent.jsp"></jsp:include>
+		<jsp:include page="addPwaMainContent.jsp"></jsp:include>
 	</div>
 </div>
 </body>

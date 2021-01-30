@@ -29,7 +29,7 @@ public class PWATable {
 			ResultSet rs = stm.executeQuery(String.format(query, category));
 			while(rs.next()) {
 				PWA pwa = new PWA(rs.getString("PwaId"), rs.getString("UserName"), rs.getString("Name"), "", rs.getString("Category"), rs.getString("Description"),
-						rs.getString("Link"), rs.getInt("SamplePicsCount"));
+						rs.getString("Link"), rs.getInt("SamplePicsCount"), rs.getInt("Views"));
 				
 //				pwa.setName(rs.getString("Name"));
 //				System.out.println(rs.getString("Name"));
@@ -56,7 +56,7 @@ public class PWATable {
 			ResultSet rs = stm.executeQuery(String.format(query, pwaId));
 			if(rs.next()) {
 				pwa = new PWA(rs.getString("PwaId"), rs.getString("UserName"), rs.getString("Name"), "", rs.getString("Category"), rs.getString("Description"),
-						rs.getString("Link"), rs.getInt("SamplePicsCount"));
+						rs.getString("Link"), rs.getInt("SamplePicsCount"), rs.getInt("Views"));
 				
 //				pwa.setName(rs.getString("Name"));
 //				System.out.println(rs.getString("Name"));
@@ -111,7 +111,7 @@ public class PWATable {
 			ResultSet rs = stm.executeQuery(String.format(query, name));
 			while(rs.next()) {
 				PWA pwa = new PWA(rs.getString("PwaId"), rs.getString("UserName"), rs.getString("Name"), "", rs.getString("Category"), rs.getString("Description"),
-						rs.getString("Link"), rs.getInt("SamplePicsCount"));
+						rs.getString("Link"), rs.getInt("SamplePicsCount"), rs.getInt("Views"));
 				
 //				pwa.setName(rs.getString("Name"));
 //				System.out.println(rs.getString("Name"));

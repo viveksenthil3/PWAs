@@ -27,7 +27,25 @@ public class PWA {
 		this.samplePicsCount = samplePicsCount;
 		this.views = 0;
 	}
+<<<<<<< Upstream, based on origin/master
 
+=======
+	
+	public PWA(String pwaId, String userName, String name, String logo, String category, String description,
+			String link, int samplePicsCount, int views) {
+//		super();
+		this.pwaId = pwaId;
+		this.userName = userName;
+		this.name = name;
+		this.logo = logo;
+		this.category = category;
+		this.description = description;
+		this.link = link;
+		this.samplePicsCount = samplePicsCount;
+		this.views = views;
+	}
+	
+>>>>>>> 26eafed display reviews form db and design modifications in detailed view page
 	public static String[] getCategories() {
 		return categories;
 	}

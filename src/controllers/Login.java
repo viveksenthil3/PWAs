@@ -21,8 +21,10 @@ public class Login extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		System.out.println(request.getParameter("username")+" "+ request.getParameter("pass"));
 		if(UserTable.isValid(request.getParameter("username"), request.getParameter("pass"))) {
 //			response.getWriter().println("Successfully logged in");
+					
 			
 			HttpSession session = request.getSession(true);
 
