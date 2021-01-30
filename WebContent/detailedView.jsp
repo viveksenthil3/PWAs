@@ -9,6 +9,9 @@
 <!-- Google material icons CDN -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+<!-- Jquery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body style="margin:0;">
 <div style="display:flex;width:100%;height:100vh;">

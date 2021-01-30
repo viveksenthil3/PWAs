@@ -1,10 +1,14 @@
 package db;
 
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import models.PWA;
 import models.Review;
@@ -50,5 +54,35 @@ public class ReviewTable {
 		}
 		
 		return 0;
+	}
+	
+	public String addReview(String username, String pwaId, String message, int rating) {
+		UUID uuid=UUID.randomUUID();
+		String query = "INSERT INTO review (`ReviewId`, `Username`, `PwaId`, `Message`, `Date`, `Rating`) VALUES (?, ?, ?, ?, ?, ?);";
+		int row=0;
+		Date date = new java.util.Date();
+		SimpleDateFormat DateFor = new SimpleDateFormat("yyyy-MM-dd");
+		String stringDate= DateFor.format(date);
+//		System.out.println(stringDate);
+		
+		try(Connection con = DriverManager.getConnection(DBConfig.getURI(), DBConfig.getUserName(), DBConfig.getPassword());
+				PreparedStatement pstm = con.prepareStatement(query);){
+			
+			pstm.setString(1, uuid.toString());
+			pstm.setString(2, username);
+			pstm.setString(3, pwaId);
+			pstm.setString(4, message);
+			pstm.setString(5, stringDate);
+			pstm.setInt(6, rating);
+			
+			row = pstm.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		if(row>0)
+			return uuid.toString();
+		return null;			
 	}
 }
