@@ -1,14 +1,194 @@
+<%@page import="models.Review"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="models.PWA"%>
 <%@page import="db.PWATable"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
 
-<div style="height:100%; width:100%;">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<div style="height:100%; width:100%;overflow-y:auto;margin-left:50px">
 	
 	<%
-		out.println("<h1>"+request.getContextPath()+"</h1>");
+		//out.println("<h1>"+request.getContextPath()+"</h1>");
 		PWA pwa = (PWA)request.getAttribute("pwa");
-		out.println("<h1>"+pwa.getName()+"</h1>");
+		//out.println("<h1>"+pwa.getName()+"</h1>");
 	%>
+	<div class="row">
+		<div class="col s12">
+		
+			<div class ="row">
+	<br>
+		<div class="col l1">
+		<%
+			out.println("<img src='"+request.getContextPath()+"/samplePics/"+pwa.getPwaId()+"-logo.png'style='width:250px;height: 250px; box-shadow: 10px 10px 50px rgb(0,0,0,0.1); border-radius: .7em; object-fit: cover;'>");
+		%></div>
+		<div class="col l2">
+		<%
+			out.println("<h3 style='padding-left:200px;font-size:300%;width:800px'>"+pwa.getName()+"</h3>");
+			//out.println("<p style='font-size:100%;padding-left:70px'>Owner");
+		%>
+			<p style="font-size:100%;padding-left:220px;width:500px">Owner
+		
+		<i class="material-icons">admin_panel_settings</i>
+		<br>
+		<div class="row"style="padding-left:220px;width:700px">
+		
+		<%
+			for(int j=1; j<=5; j++){
+				if(j<=(int)request.getAttribute("rating"))
+					out.println("<i style=\"color:#ffc61a\"class=\"material-icons\">star_rate</i>");
+				else
+					out.println("<i style=\" color:grey; \" class=\"material-icons\">star_rate</i>");
+			}
+		%>
+		
+		</div>
+		<%
+			out.println("<p style='font-size:160%; padding-left:220px'>"+pwa.getViews());
+		%>
+		<i style="margin-left:0px"class="material-icons">visibility</i>
+		</div></div>
+		
+		
+		</div>
+		
+		<div class="col s12">
+			<div>
+				<h4>Description:</h4>
+				<%
+					out.println("<p style='padding-left:25px; width:700px; text-align: justify;'>"+pwa.getDescription()+"</p>");
+					//HttpSession session= request.getSession(true);
+					//out.println(session.getAttribute("username"));
+				%>
+			</div>
+		</div>
+		
+		<div class="col s12">
+			<div>
+				<h4>Sample Pics</h4>
+			</div>
+			<div style="overflow-x: auto;height:400px; width:700px;display:flex; align-items: center;">
+				
+					<%
+					//out.println("<div class='col s3'>");
+					//out.println("<img src='"+request.getContextPath()+"/samplePics/"+pwa.getPwaId()+"-1.png'style='width:400px;height:400px'");
+					//out.println("</div>");	
+					for(int i=1;i<=pwa.getSamplePicsCount();i++){
+						out.println("<div style='height:300px;min-width:200px; max-width:200px; margin:0 .6em; '>");
+						out.println("<img src='"+request.getContextPath()+"/samplePics/"+pwa.getPwaId()+"-"+i+".png'style='width:100%; height:100%; object-fit: cover; border-radius: .5em;box-shadow: 10px 10px 30px rgb(0,0,0,0.2);'>");
+						out.println("</div>");						
+						}
+					%>
+				
+			</div>
+		</div>
+		
+		
+		<div class="col s12">
+			<div>
+				<h4>Reviews</h4>
+			</div>
+			
+			<div style="width:100%; height: fit-content; background-color: pin; display: flex; flex-direction: column;">
+				
+				
+				<%
+					ArrayList<Review> reviews = (ArrayList<Review>)request.getAttribute("reviews");
+					for(int i=0; i<reviews.size(); i++){
+						Review review = reviews.get(i);
+						
+						out.println("<div class=\"reviewContainer\">");
+						out.println("<div class=\"reviewUserPicContainer\"><img alt=\"\" src=\"/PWAs/images/user.png\"></div>");
+						out.println("<div class=\"reviewContent\">");
+						out.println("<div class=\"reviewUserName\">"+review.getUsername()+"</div>");
+						out.println("<div>");
+						out.println("<div class=\"reviewRating\">");
+						
+						for(int j=1; j<=5; j++){
+							if(j<=review.getRating())
+								out.println("<i style=\"color:#ffc61a\"class=\"material-icons\">star_rate</i>");
+							else
+								out.println("<i class=\"material-icons\">star_rate</i>");
+						}
+						
+						out.println("</div>");
+						out.println("</div>");
+						out.println("<div class=\"reviewMessage\">"+review.getMessage()+"</div>");
+						out.println("</div>");
+						out.println("</div>");
+						
+					}
+				%>
+				<!-- 
+				<div class="reviewContainer">
+					<div class="reviewUserPicContainer"><img alt="" src="/PWAs/images/user.png"></div>
+					<div class="reviewContent">
+						<div class="reviewUserName">Vivek</div>
+						<div>
+							<div class="reviewRating">
+								<i style="color:yellow"class="material-icons">star_rate</i>
+								<i class="material-icons">star_rate</i>
+								<i class="material-icons">star_rate</i>
+								<i class="material-icons">star_rate</i>
+								<i class="material-icons">star_rate</i>
+							</div>
+						</div>
+						
+						<div class="reviewMessage">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus sed dui consequat eget nunc. Auctor amet suspendisse ultricies sit ac ac. Fermentum nam at scelerisque quis viverra neque, erat enim. Sed et at consectetur pellentesque. At tellus blandit urna risus nibh fermentum. Dictumst nibh vulputate pellentesque magna.</div>
+					</div>
+				</div>
+				 -->
+				
+				
+			</div>
+		</div>
+	</div>
+	
 </div>
+
+<style>
+	.reviewContainer{
+		display: flex;
+		height: 150px;
+		width: 600px;
+		margin: 1em 0;
+	}
+	
+	.reviewUserPicContainer{
+		fle: 1;
+		padding: .5em 0 0 .5em;
+		margin: 0 2.5em 0 0;
+	}
+	
+	.reviewUserPicContainer img{
+		width: 100%;		
+		border-radius: 5em;
+		object-fit: cover;
+	}
+	
+	.reviewContent{
+		fle: 5;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.reviewUserName{
+		font-weight: bold;
+		font-size: 18px;
+	}
+	
+	.reviewRating i{
+		font-size: 16px;
+		color: grey;
+	}
+	
+	.reviewMessage{
+		color: grey;
+		font-size: 14px;
+		text-align: justify;
+	}
+	
+</style>

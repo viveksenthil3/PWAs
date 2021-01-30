@@ -4,7 +4,7 @@
 
 <div style="height:6em; width:100%; background-color:white; display:flex; justify-content: center; align-items: center;">
 	<div class="searchBox">
-		<div class="searchAreaContainer"><input id="searchInput" onkeyup="getSuggestions()" placeholder="Search for PWAs" type="text" name="query"></div>
+		<div class="searchAreaContainer"><input class="browser-default" id="searchInput" onkeyup="getSuggestions()" placeholder="Search for PWAs" type="text" name="query"></div>
 		<div class="searchBtnContainer"><i class="material-icons">search</i></div>
 	</div>
 	
@@ -93,6 +93,7 @@
 	
 	.searchAreaContainer input:focus{
 		outline: none;
+		border: none;s
 	}
 	
 	.searchBtnContainer{
