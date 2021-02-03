@@ -138,10 +138,10 @@
 	<div style="position:absolute; top:20px; left:80px; "> 
 		<img src=/PWAs/images/PWAS.svg> 
 	</div> 
-	<a href="#"><button class="button"><i class='fas fa-plus'></i> Add PWA</button></a>
+	<a href="#"><button class="button"><i style="background-color: rgb(0,0,0,0); color:black;" class='fas fa-plus'></i> Add PWA</button></a>
 	<a href="#"><button class="button1">PWA</button></a>
 	<a href="#"><button class="b2">My PWAs</button></a>
-	<hr style="width:100%; padding-bottom: 150px; ">
+	
 	<a href="#"><button class="b3"><i class="fa fa-dice-five"></i>  Entertainment</button></a>
 	<a href="#"><button class="b4"><i class="glyphicon glyphicon-cutlery"></i>  Food</button></a>
 	<a href="#"><button class="b5"><i class="fas fa-dumbbell"></i>  Fitness</button></a>

@@ -23,6 +23,7 @@ public class HomePage extends HttpServlet {
 //		p.getTenPwa("entertainment");
 		
 		for(String category : PWA.getCategories()) {
+//			System.out.println(category);
 			request.setAttribute(category, p.getPwa(category, true));
 		}
 		

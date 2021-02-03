@@ -1,7 +1,7 @@
 package models;
 
 public class PWA {
-	static private String[] categories = {"entertainment", "food"}; 
+	static private String[] categories = {"entertainment", "food", "fitness", "sports", "education"}; 
 	private String pwaId;
 	private String userName;
 	private String name;
@@ -27,9 +27,6 @@ public class PWA {
 		this.samplePicsCount = samplePicsCount;
 		this.views = 0;
 	}
-<<<<<<< Upstream, based on origin/master
-
-=======
 	
 	public PWA(String pwaId, String userName, String name, String logo, String category, String description,
 			String link, int samplePicsCount, int views) {
@@ -45,7 +42,6 @@ public class PWA {
 		this.views = views;
 	}
 	
->>>>>>> 26eafed display reviews form db and design modifications in detailed view page
 	public static String[] getCategories() {
 		return categories;
 	}
