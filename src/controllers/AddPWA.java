@@ -16,6 +16,10 @@ import javax.servlet.http.Part;
 
 import db.PWATable;
 
+import db.ReviewTable;
+import models.PWA;
+import models.Review;
+
 
 
 @WebServlet("/addPWA")
@@ -26,7 +30,9 @@ public class AddPWA extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("addPwa.jsp").forward(request, response);;
+
+		request.getRequestDispatcher("addPwa.jsp").forward(request, response);
+
 	}
 
 

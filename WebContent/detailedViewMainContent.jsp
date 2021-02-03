@@ -30,9 +30,14 @@
 			out.println("<h3 style='padding-left:200px;font-size:300%;width:800px'>"+pwa.getName()+"</h3>");
 			//out.println("<p style='font-size:100%;padding-left:70px'>Owner");
 		%>
-			<p style="font-size:100%;padding-left:220px;width:500px">Owner
+
 		
-		<i class="material-icons">admin_panel_settings</i>
+		<%
+			if(session.getAttribute("username")!=null && session.getAttribute("username").equals(pwa.getUserName()))
+				out.println("<p style=\"font-size:100%;padding-left:220px;width:500px\">Owner<i class=\"material-icons\">admin_panel_settings</i></p>");
+		%>
+					
+
 		<br>
 		<div class="row"style="padding-left:220px;width:700px">
 		
@@ -47,9 +52,12 @@
 		
 		</div>
 		<%
-			out.println("<p style='font-size:160%; padding-left:220px'>"+pwa.getViews());
+
+			out.println("<p style='font-size:160%; display:flex; padding-left:220px'>"+pwa.getViews());
 		%>
-		<i style="margin-left:0px"class="material-icons">visibility</i>
+		<i style="margin-left:10px;"class="material-icons">visibility</i>
+		</p>
+
 		</div></div>
 		
 		
@@ -92,7 +100,14 @@
 				<h4>Reviews</h4>
 			</div>
 			
-			<div style="display: flex; padding: 0 0 0 6.8em;">
+
+			<%
+				if(session.getAttribute("username")!=null)
+					out.println("<div style=\"display: flex; padding: 0 0 0 6.8em;\">");
+				else	
+					out.println("<div style=\"display: none; padding: 0 0 0 6.8em;\">");
+			%>
+			
 				<p style="font-weight: bold;    margin: .2em 1em 0 0;"> Rate This PWA</p>
 				<div class="userRating">
 					<i id="star-1" class="material-icons">star_rate</i>
