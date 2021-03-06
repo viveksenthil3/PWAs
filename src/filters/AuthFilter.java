@@ -33,7 +33,7 @@ public class AuthFilter implements Filter {
 			chain.doFilter(request, response);
 			}
 		else
-		((HttpServletResponse)response).sendError(401);
+		((HttpServletResponse)response).sendRedirect("/PWAs/login");
 	}
 
 	@Override

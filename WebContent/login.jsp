@@ -21,10 +21,16 @@
 		<div class="loginCard">
 			
 			<h4>Login </h4>
+			<%	if(request.getAttribute("error")!=null){
+				
+				out.println("<div class='errorMsgLogin'>"+request.getAttribute("error")+"</div>");
+			}
+				%>
+				
 				<form method="post" action="login">				
-				<input name="username" placeholder="User Name" type="text">
+				<input name="username" placeholder="User Name" type="text" required>
 				<br>
-				<input name="pass" placeholder="Password" type="password">		
+				<input name="pass" placeholder="Password" type="password" required>		
 				<br>
 				<input style="" class="btn orange" value="Login" type="submit">
 			</form>
@@ -56,6 +62,15 @@
 			padding: 2em 1em 2em 1em; 			
 			border-radius: .3em;
 			box-shadow: 25px 30px 30px rgb(0,0,0,0.2);
+		}
+		
+		.errorMsgLogin{
+			width: 100%;
+			border: dashed red 2px;
+			color: red;
+			text-align: center;
+			
+			padding: .2em 0;
 		}
 	</style>
 </body>

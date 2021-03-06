@@ -54,7 +54,7 @@
 			})
 			
 			if(pwas.length==0)
-				$(".suggestionsContainer").append("<div class='suggestion'>	<div class='suggestionImgContainer'><img alt='' src='"+URL+"/images/notFound.svg'></div>	<div class='suggestionPwaName'>No PWAs found</div>	</div>	");
+				$(".suggestionsContainer").append("<div class='suggestion'>	<div class='suggestionImgContainer'><img alt='' src='"+URL+"/images/notFound.png'></div>	<div class='suggestionPwaName'>No PWAs found</div>	</div>	");
 		})
 	}
 	
@@ -69,7 +69,7 @@
 		border-radius:.4em;
 		border: solid rgb(0, 0, 0, 0.2) 1px;
 		height: 3em;
-		width: 60%;
+		width: 62%;
 		background-color: white;
 		padding: 0 0 0 1em;
 		display: flex;
@@ -111,7 +111,7 @@
 	.suggestionsContainer{
 		position: absolute;
 		top:4.2em;
-		width: 50%;
+		width: 51%;
 		height: fit-content;
 		background-color: white;
 		box-shadow: 0px 50px 50px rgb(0, 0, 0, 0.2);

@@ -1,7 +1,7 @@
 package models;
 
 public class PWA {
-	static private String[] categories = {"entertainment", "food", "fitness", "sports", "education"}; 
+	static private String[] categories = {"entertainment", "food", "tool", "sports", "education"}; 
 	private String pwaId;
 	private String userName;
 	private String name;
