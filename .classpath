@@ -11,5 +11,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="D:/Program Files/apache-tomcat-8.5.34/lib/mysql-connector-java-8.0.22.jar"/>
 	<classpathentry kind="lib" path="D:/Program Files/apache-tomcat-8.5.34/lib/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="E:/Codes/BootCampJava/org.eclipse.core.resources/org.eclipse.core.resources_3.13.900.v20201105-1507.jar"/>
+	<classpathentry kind="lib" path="E:/Codes/BootCampJava/org.eclipse.equinox.common/org.eclipse.equinox.common_3.14.0.v20201102-2053.jar"/>
+	<classpathentry kind="lib" path="E:/Codes/BootCampJava/org.eclipse.core.runtime/org.eclipse.core.runtime_3.20.0.v20201027-1526.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

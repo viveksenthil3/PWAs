@@ -18,7 +18,7 @@
 <div style="display:flex;width:100%;height:100vh;">
 	<div style="background-color: red;height: 100%;flex: 1;"><jsp:include page="sideNav.jsp"></jsp:include></div>
 	
-	<div style="background-color: #f3f3f3;height: 100%;flex: 5;display: flex;flex-direction: column;">
+	<div style="background-color: #f3f3f3;height: 100%;flex: 5;display: flex;flex-direction: column; scroll-behavior: smooth; overflow-y: auto">
 		<jsp:include page="searchBar.jsp"></jsp:include>
 		<jsp:include page="homeMainContent.jsp"></jsp:include>
 	</div>

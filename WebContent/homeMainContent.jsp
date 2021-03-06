@@ -4,7 +4,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 
-<div style=" min-height: 100%; height:fit-content; width:100%; display:flex;flex-direction:column; padding: 2em 0 8em 3em; overflow-y: auto">
+<div style=" min-height: 100%;  height:fit-content; width:100%; display:flex;flex-direction:column; padding: 2em 0 8em 3em; ">
 	
 	<%
 		for(String category : PWA.getCategories()){
@@ -21,7 +21,7 @@
 			for(int i=0; i<pwas.size(); i++){
 				PWA pwa=pwas.get(i);
 				//out.println(String.format("<li>%s</li>", pwa.getName()));
-				out.println("<div class='box'>");
+				out.println("<div pwaId='"+pwa.getPwaId()+"' class='box'>");
 				
 				
 				out.println("<img  src='"+request.getContextPath()+"/samplePics/"+pwa.getPwaId()+"-logo.png'style='height:70%;width:100%'>");
@@ -84,3 +84,17 @@
 			
 		
 	</style>
+	
+	<script>
+		$(".box").click(e=>{
+			let pwaId = "";
+			if($(e.target).attr("class")=="box")
+				pwaId=$(e.target).attr('pwaId');
+			else
+				pwaId=$(e.target).parent('.box').attr('pwaId');
+			
+			//console.log($(e.target).parent('.box').attr("class"));
+			window.location.href = '<%= request.getContextPath() %>/detailedView?pwaId='+pwaId;
+			
+		})
+	</script>

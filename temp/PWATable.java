@@ -99,59 +99,6 @@ public class PWATable {
 		return null;			
 	}
 	
-	
-	public String editPwa(String pwaId,String username, String category, String name, String description, int samplePicsCount, String link) {
-//		UUID uuid=UUID.randomUUID();
-		String query = "UPDATE pwa SET Username=?,Name=?,Category=?,Description=?,Link=?,SamplePicsCount=?,Views=? WHERE PwaId=?;";
-		int row=0;
-		//String query = "UPDATE pwa (PwaId, Username, Name, Category, Description, Link, SamplePicsCount, Views) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-		try(Connection con = DriverManager.getConnection(DBConfig.getURI(), DBConfig.getUserName(), DBConfig.getPassword());
-				PreparedStatement pstm = con.prepareStatement(query);){
-			
-			
-			pstm.setString(1, username);
-			pstm.setString(2, name);
-			pstm.setString(3, category);
-			pstm.setString(4, description);
-			pstm.setString(5, link);
-			pstm.setInt(6, samplePicsCount);
-			
-			pstm.setInt(7, 0);
-			pstm.setString(8, pwaId);
-			row = pstm.executeUpdate();
-			
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-		
-		if(row>0)
-			return pwaId;
-		return pwaId;			
-	}
-	public void delPwa(String PwaId){
-		try(Connection con = DriverManager.getConnection(DBConfig.getURI(), DBConfig.getUserName(), DBConfig.getPassword());
-				Statement stm = con.createStatement();){
-			
-			String query = "DELETE FROM pwa WHERE PwaId='%s' ";
-//			if(true)
-//				query+="LIMIT 10;";
-//			else
-//				query+=";";
-			
-			stm.executeUpdate(String.format(query, PwaId));
-//			while(rs.next()) {
-//				PWA pwa = new PWA(rs.getString("PwaId"), rs.getString("UserName"), rs.getString("Name"), "", rs.getString("Category"), rs.getString("Description"),
-//						rs.getString("Link"), rs.getInt("SamplePicsCount"), rs.getInt("Views"));
-//				
-////				pwa.setName(rs.getString("Name"));
-////				System.out.println(rs.getString("Name"));
-//				//pwa_array.add(pwa);
-//			}
-			
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-	}
 	public ArrayList<PWA> searchPwa(String name){
 		ArrayList<PWA> pwa_array = new ArrayList<>();
 		

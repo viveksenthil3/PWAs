@@ -5,10 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 <div style="height:100%; width:100%;overflow-y:auto;margin-left:50px">
 	
 	<%
@@ -27,16 +24,29 @@
 		%></div>
 		<div class="col l2">
 		<%
-			out.println("<h3 style='padding-left:200px;font-size:300%;width:800px'>"+pwa.getName()+"</h3>");
+			if(session.getAttribute("username")!=null)
+				out.println("<a class='pwaNameLink' href="+ pwa.getLink() +" target='_blank'><h3 style='padding-left:200px;font-size:300%;width:800px'>"+pwa.getName()+"</h3></a>");
+			else
+				out.println("<a class='pwaNameLink' href='/PWAs/login?url=/PWAs/detailedView?pwaId="+ pwa.getPwaId() +"' ><h3 style='padding-left:200px;font-size:300%;width:800px'>"+pwa.getName()+"</h3></a>");
 			//out.println("<p style='font-size:100%;padding-left:70px'>Owner");
 		%>
 
 		
 		<%
-			if(session.getAttribute("username")!=null && session.getAttribute("username").equals(pwa.getUserName()))
-				out.println("<p style=\"font-size:100%;padding-left:220px;width:500px\">Owner<i class=\"material-icons\">admin_panel_settings</i></p>");
+			if(session.getAttribute("username")!=null && session.getAttribute("username").equals(pwa.getUserName())){
+				out.println("<p class=\"ownerBtn\" style=\"font-size:100%;padding-left:220px;width:500px;cursor:pointer;\">");
+			}
+			else
+				out.println("<p class=\"ownerBtn\" style=\"display:none;font-size:100%;padding-left:220px;width:500px;cursor:pointer;\">");
 		%>
-					
+			Owner<i class="material-icons">admin_panel_settings</i>
+			<div class="ownerOptionsPopup" style="display: none;">
+				<p class="editPwaBtn">Edit PWA</p>
+				<p class="deletePwaBtn">Delete PWA</p>
+			</div>
+			
+			<div class="ownerOptionsPopupOuterFullscreen" style="display: none;"></div>
+			</p>
 
 		<br>
 		<div class="row"style="padding-left:220px;width:700px">
@@ -53,7 +63,7 @@
 		</div>
 		<%
 
-			out.println("<p style='font-size:160%; display:flex; padding-left:220px'>"+pwa.getViews());
+			out.println("<p style='font-size:160%; display:flex; display:none; padding-left:220px'>"+pwa.getViews());
 		%>
 		<i style="margin-left:10px;"class="material-icons">visibility</i>
 		</p>
@@ -215,6 +225,12 @@
 		$(".ratingPopOuterContainer").show();
 	});
 	
+	$(".ratingPopOuterContainer").click(e=>{
+		
+		if($(e.target).attr("class")==$(".ratingPopOuterContainer").attr("class"))
+			$(".ratingPopOuterContainer").hide();
+	});
+	
 	$(".userRating2 i").on("mouseover", e=>{
 		
 		$(".userRating2 i").css("color", "grey");
@@ -243,6 +259,30 @@
 			window.location.reload();
 		})
 	});
+	
+	$(".ownerBtn").click(e=>{
+		$(".ownerOptionsPopup").show();
+		$(".ownerOptionsPopupOuterFullscreen").show();
+	});
+	
+	$(".ownerOptionsPopupOuterFullscreen").click(e=>{
+		$(".ownerOptionsPopup").hide();
+		$(".ownerOptionsPopupOuterFullscreen").hide();
+	});
+	
+	$(".editPwaBtn").click(e=>{
+		window.location.href='/PWAs/editPWA?pwaId='+'<%= pwa.getPwaId() %>';
+	});
+	
+	$(".deletePwaBtn").click(e=>{
+		$.post('/PWAs/deletePWA',{
+			pwaId: '<%= pwa.getPwaId()%>'
+		}, data=>{
+			//console.log(data);
+			window.location.href='<%= request.getContextPath() %>/home'
+		});
+	});
+	
 </script>
 
 <style>
@@ -253,13 +293,14 @@
 
 	.reviewContainer{
 		display: flex;
-		height: 150px;
+		heigh: 150px;
 		width: 600px;
 		margin: 1em 0;
 	}
 	
 	.reviewUserPicContainer{
 		fle: 1;
+	    width: 5.1em;
 		padding: .5em 0 0 .5em;
 		margin: 0 2.5em 0 0;
 	}
@@ -325,6 +366,52 @@
 	
 	.postRatingBtn{
 		margin: 2em 0 0 0;
+	}
+	
+	.ownerOptionsPopup{
+		position: absolute;
+		top: 22%;
+    	left: 45%;
+		
+		width:12em;
+		height:10em;
+		background-color: white;
+		
+		font-weight: 600;
+		font-size: 18px;
+		
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		box-shadow: 20px 20px 30px rgb(0, 0, 0, 0.3);
+		
+		z-index: 20;
+	}
+	
+	.ownerOptionsPopup p{
+		width:100%;
+		margin:0;
+		padding:.8em 0;
+		text-align: center;
+		cursor:pointer;
+		
+	}
+	
+	.ownerOptionsPopup p:hover{
+		background-color: rgb(0,0,0,0.2);
+	}
+	
+	.ownerOptionsPopupOuterFullscreen{
+		position: absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+	}
+	
+	.pwaNameLink:hover{
+		text-decoration: underline;
 	}
 	
 </style>

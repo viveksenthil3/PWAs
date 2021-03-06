@@ -16,12 +16,14 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		System.out.println("in login");
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		System.out.println(request.getParameter("username")+" "+ request.getParameter("pass"));
+//		System.out.println(request.getParameter("url"));
 		if(UserTable.isValid(request.getParameter("username"), request.getParameter("pass"))) {
 //			response.getWriter().println("Successfully logged in");
 					
@@ -30,8 +32,8 @@ public class Login extends HttpServlet {
 
 			session.setAttribute("username", request.getParameter("username"));
 
-			
-			response.sendError(200);
+			response.sendRedirect(request.getContextPath()+"/home");
+//			response.sendError(200);
 //			request.getParameter("redirect");
 		}
 		else {
@@ -39,10 +41,13 @@ public class Login extends HttpServlet {
 			if(session!=null)
 
 				session.removeAttribute("username");
-
-			response.sendError(400);
+			
+			request.setAttribute("error", "Invalid user Name or Password");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+//			response.sendError(400);
 			
 		}
+		System.out.println(request.getParameter("url"));
 //			response.getWriter().println("Invalid username and password");
 	}
 
